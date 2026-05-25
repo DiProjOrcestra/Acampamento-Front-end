@@ -4,317 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>JavaScript: A Magia Viva do Reino Web</title>
-  <style>
-    /* PALETA DA MARCA
-      Verde principal:      #2EB600
-      Verde auxiliar:       #3FCC10
-      Verde escuro:         #003D0D
-      Verde escuro aux.:    #01571E
-      Branco principal:     #FFFBDC
-      Branco auxiliar:      #FFFFFF
-    */
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      background: radial-gradient(circle at top, #FFFBDC 0, #FFFFFF 40%, #FFFBDC 100%);
-      font-family: 'IM Fell English', serif;
-      color: #003D0D;
-      line-height: 1.6;
-    }
-
-    .reino {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 20px;
-    }
-
-    header {
-      text-align: center;
-      margin-bottom: 30px;
-      padding: 26px;
-      background: #FFFBDC;
-      border: 5px solid #01571E;
-      box-shadow: 0 0 18px rgba(0, 61, 13, 0.25);
-      border-radius: 10px;
-      position: relative;
-    }
-
-    h1 {
-      font-size: 2.4em;
-      color: #003D0D;
-      margin-bottom: 8px;
-      text-shadow: 1px 1px 2px rgba(0, 61, 13, 0.2);
-    }
-
-    .subtitulo {
-      font-size: 1.2em;
-      color: #01571E;
-      font-style: italic;
-    }
-
-    .icone-orbe {
-      position: absolute;
-      right: 20px;
-      top: 20px;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background: radial-gradient(circle, #3FCC10 0, #2EB600 60%, #01571E 100%);
-      box-shadow: 0 0 15px rgba(63, 204, 16, 0.7);
-    }
-
-    .nav-tabs {
-      display: flex;
-      gap: 10px;
-      margin: 24px 0;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    .nav-tabs button {
-      padding: 9px 16px;
-      background: #2EB600;
-      color: #FFFFFF;
-      border: 2px solid #003D0D;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 0.95em;
-      font-family: 'Cinzel', serif;
-      font-weight: bold;
-      transition: all 0.3s;
-    }
-
-    .nav-tabs button:hover,
-    .nav-tabs button.active {
-      background: #01571E;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 8px rgba(0, 61, 13, 0.3);
-    }
-
-    .nivel {
-      display: none;
-      background: #FFFBDC;
-      padding: 24px;
-      margin: 16px 0;
-      border: 7px solid #01571E;
-      box-shadow: 0 0 18px rgba(0, 61, 13, 0.25);
-      border-radius: 6px;
-      animation: fadeIn 0.35s ease-in;
-    }
-
-    .nivel.active {
-      display: block;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    h2 {
-      font-size: 1.7em;
-      color: #01571E;
-      margin: 6px 0 12px;
-      border-bottom: 2px solid #01571E;
-      padding-bottom: 6px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    h3 {
-      font-size: 1.25em;
-      color: #01571E;
-      margin: 16px 0 8px;
-    }
-
-    h4 {
-      font-size: 1.05em;
-      margin: 10px 0 4px;
-      color: #003D0D;
-    }
-
-    p {
-      margin-bottom: 8px;
-      font-size: 1em;
-    }
-
-    ul, ol {
-      margin-left: 22px;
-      margin-bottom: 12px;
-    }
-
-    li {
-      margin-bottom: 5px;
-    }
-
-    ul li::marker {
-      color: #2EB600;
-    }
-
-    ol li::marker {
-      color: #2EB600;
-      font-weight: bold;
-    }
-
-    .card {
-      background: #FFFFFF;
-      border-left: 4px solid #01571E;
-      padding: 12px;
-      margin: 10px 0;
-      border-radius: 3px;
-      box-shadow: 0 2px 5px rgba(0, 61, 13, 0.12);
-      font-size: 0.97em;
-    }
-
-    .conceito   { border-left-color: #2EB600; background: rgba(46, 182, 0, 0.06); }
-    .desafio    { border-left-color: #3FCC10; background: rgba(63, 204, 16, 0.07); }
-    .recompensa { border-left-color: #01571E; background: rgba(1, 87, 30, 0.06); }
-    .armadilha  { border-left-color: #003D0D; background: rgba(0, 61, 13, 0.06); }
-
-    pre {
-      background: #FFFBDC;
-      padding: 10px;
-      border-left: 4px solid #01571E;
-      margin: 10px 0;
-      overflow-x: auto;
-      border-radius: 3px;
-      font-family: "Courier New", monospace;
-      font-size: 0.9em;
-      color: #003D0D;
-    }
-
-    code {
-      background: #FFFBDC;
-      padding: 2px 4px;
-      border-radius: 3px;
-      font-family: "Courier New", monospace;
-      font-size: 0.9em;
-      color: #003D0D;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 12px 0;
-      font-size: 0.93em;
-    }
-
-    th, td {
-      border: 1px solid #01571E;
-      padding: 6px 8px;
-      text-align: left;
-    }
-
-    th {
-      background: #01571E;
-      color: #FFFBDC;
-    }
-
-    tr:nth-child(even) {
-      background: rgba(46, 182, 0, 0.06);
-    }
-
-    .progress-section {
-      margin: 18px 0;
-      text-align: center;
-    }
-
-    .progress-bar {
-      width: 100%;
-      height: 22px;
-      background: #FFFBDC;
-      border: 2px solid #01571E;
-      border-radius: 11px;
-      overflow: hidden;
-      margin: 6px 0;
-    }
-
-    .progress-fill {
-      height: 100%;
-      background: linear-gradient(to right, #2EB600, #3FCC10);
-      width: 0%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #FFFFFF;
-      font-weight: bold;
-      font-size: 0.85em;
-      transition: width 0.3s;
-    }
-
-    .xp-counter {
-      text-align: right;
-      font-size: 0.95em;
-      color: #01571E;
-      font-weight: bold;
-      margin-top: 4px;
-    }
-
-    footer {
-      text-align: center;
-      padding: 14px;
-      margin-top: 20px;
-      border-top: 2px solid #01571E;
-      color: #003D0D;
-      font-size: 0.9em;
-      background: #FFFBDC;
-    }
-
-    .emoji { font-size: 1.12em; }
-
-    /* Mini "desenhos" com CSS */
-    .personagem-demo {
-      display: inline-block;
-      width: 80px;
-      height: 80px;
-      border-radius: 10px;
-      background: linear-gradient(to bottom, #2EB600, #01571E);
-      margin-right: 10px;
-      position: relative;
-      box-shadow: 0 0 10px rgba(0, 61, 13, 0.4);
-    }
-
-    .personagem-demo::before {
-      content: "🧙";
-      position: absolute;
-      font-size: 38px;
-      top: 14px;
-      left: 21px;
-    }
-
-    .painel-demo {
-      border: 2px dashed #01571E;
-      padding: 10px;
-      border-radius: 6px;
-      background: rgba(255, 251, 220, 0.9);
-      margin-top: 8px;
-      text-align: center;
-      font-size: 0.95em;
-    }
-
-    @media (max-width: 768px) {
-      .nav-tabs { flex-direction: column; }
-      .nav-tabs button { width: 100%; }
-      h1 { font-size: 2em; }
-      h2 { font-size: 1.4em; }
-      .nivel { padding: 18px; }
-      pre { font-size: 0.8em; }
-      .icone-orbe { display: none; }
-    }
-
-    @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=IM+Fell+English&display=swap');
-  </style>
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body>
+<body class="tema-orcestra">
   <div class="reino">
     <header>
-      <div class="icone-orbe"></div>
       <h1>🧙‍♂️ JavaScript: A Magia Viva do Reino Web</h1>
       <p class="subtitulo">Dando vida ao Portfólio do Herói</p>
       <p style="margin-top:8px;">
@@ -328,16 +22,16 @@
     </header>
 
     <div class="nav-tabs">
-      <button class="nav-btn active" data-target="intro">Prólogo</button>
-      <button class="nav-btn" data-target="nivel1">Nível 1</button>
-      <button class="nav-btn" data-target="nivel2">Nível 2</button>
-      <button class="nav-btn" data-target="nivel3">Nível 3</button>
-      <button class="nav-btn" data-target="nivel4">Nível 4</button>
-      <button class="nav-btn" data-target="nivel5">Nível 5</button>
-      <button class="nav-btn" data-target="nivel6">Nível 6</button>
-      <button class="nav-btn" data-target="nivel7">Nível 7</button>
-      <button class="nav-btn" data-target="boss">Boss Final</button>
-      <button class="nav-btn" data-target="resumo">Resumo</button>
+      <button class="nav-btn active" data-target="intro" data-xp="0">Prólogo</button>
+      <button class="nav-btn" data-target="nivel1" data-xp="40">Nível 1</button>
+      <button class="nav-btn" data-target="nivel2" data-xp="90">Nível 2</button>
+      <button class="nav-btn" data-target="nivel3" data-xp="150">Nível 3</button>
+      <button class="nav-btn" data-target="nivel4" data-xp="210">Nível 4</button>
+      <button class="nav-btn" data-target="nivel5" data-xp="280">Nível 5</button>
+      <button class="nav-btn" data-target="nivel6" data-xp="360">Nível 6</button>
+      <button class="nav-btn" data-target="nivel7" data-xp="420">Nível 7</button>
+      <button class="nav-btn" data-target="boss" data-xp="460">Boss Final</button>
+      <button class="nav-btn" data-target="resumo" data-xp="460">Resumo</button>
     </div>
 
     <!-- INTRO -->
@@ -366,16 +60,12 @@
       </div>
 
       <div class="progress-section">
+        <input type="hidden" id="xpMaximo" value="460">
         <h3>Seu Progresso na Magia JavaScript</h3>
         <div class="progress-bar">
           <div class="progress-fill" id="progressBar">0%</div>
         </div>
         <div class="xp-counter">XP: <span id="xpCounter">0</span> / 460</div>
-      </div>
-
-      <div class="painel-demo">
-        <span class="personagem-demo"></span>
-        <span>Você é um aprendiz com um grimório vazio. Cada nível adiciona novos feitiços ao seu livro.</span>
       </div>
     </div>
 
@@ -628,9 +318,9 @@ btnXp.addEventListener("click", function () {
         </ol>
       </div>
 
-      <div class="painel-demo" id="painel-demo-js">
+      <div style="border: 2px dashed var(--cor-borda-container); padding: 10px; border-radius: 6px; text-align: center; margin-top: 15px;">
         <p><strong>Mini Demo:</strong> Clique para ver a “magia” deste próprio material.</p>
-        <button id="btn-demo" style="padding:6px 12px;border-radius:4px;border:2px solid #01571E;background:#2EB600;color:#FFFFFF;font-weight:bold;cursor:pointer;">
+        <button id="btn-demo" style="padding:6px 12px;border-radius:4px;border:2px solid var(--cor-borda-container);background:var(--bg-botao);color:var(--cor-texto-botao);font-weight:bold;cursor:pointer;">
           Lançar Encantamento
         </button>
         <p id="texto-demo" style="margin-top:6px;">Nada aconteceu... ainda.</p>
@@ -745,7 +435,7 @@ async function buscarPiada() {
         <tr><td>6</td><td>DOM & Eventos</td><td>80</td></tr>
         <tr><td>7</td><td>Funções assíncronas & GET</td><td>60</td></tr>
         <tr><td>Boss</td><td>Portfólio do Herói (HTML + CSS + JS)</td><td>120</td></tr>
-        <tr style="background:#01571E;color:#FFFBDC;">
+        <tr style="background:var(--cor-borda-container);color:var(--bg-container);">
           <td><strong>Total</strong></td><td></td><td><strong>460 XP</strong></td>
         </tr>
       </table>
@@ -767,57 +457,6 @@ async function buscarPiada() {
     <p>&copy; 2026 Capacitação de Desenvolvimento Web Medieval | JavaScript</p>
     <p><em>Livro 3 da aventura: A Magia Viva do JavaScript (Portfólio integrado)</em></p>
   </footer>
-
-  <script>
-    const navButtons = document.querySelectorAll('.nav-btn');
-    const niveles = document.querySelectorAll('.nivel');
-    const xpMap = {
-      intro: 0,
-      nivel1: 40,
-      nivel2: 90,
-      nivel3: 150,
-      nivel4: 210,
-      nivel5: 280,
-      nivel6: 360,
-      nivel7: 420,
-      boss: 460,
-      resumo: 460
-    };
-
-    function updateProgress(xp) {
-      const total = 460;
-      const progressBar = document.getElementById('progressBar');
-      const xpCounter = document.getElementById('xpCounter');
-      const perc = Math.round((xp / total) * 100);
-      progressBar.style.width = perc + '%';
-      progressBar.textContent = perc + '%';
-      xpCounter.textContent = xp;
-    }
-
-    navButtons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const target = btn.getAttribute('data-target');
-        navButtons.forEach(b => b.classList.remove('active'));
-        niveles.forEach(n => n.classList.remove('active'));
-        btn.classList.add('active');
-        document.getElementById(target).classList.add('active');
-        updateProgress(xpMap[target] || 0);
-        window.scrollTo(0, 0);
-      });
-    });
-
-    // Mini demo DOM + evento
-    const btnDemo = document.getElementById('btn-demo');
-    const textoDemo = document.getElementById('texto-demo');
-    if (btnDemo && textoDemo) {
-      let manaClicks = 0;
-      btnDemo.addEventListener('click', () => {
-        manaClicks++;
-        textoDemo.textContent = "✨ Encantamento lançado " + manaClicks + "x! O orbe brilha mais forte.";
-      });
-    }
-
-    updateProgress(0);
-  </script>
+  <script src="assets/js/script.js"></script>
 </body>
 </html>

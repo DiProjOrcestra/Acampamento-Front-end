@@ -4,271 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CSS: A Magia Visual do Reino Web</title>
-  <style>
-    /* PALETA DA MARCA
-      Verde principal:      #2EB600
-      Verde auxiliar:       #3FCC10
-      Verde escuro:         #003D0D
-      Verde escuro aux.:    #01571E
-      Branco principal:     #FFFBDC
-      Branco auxiliar:      #FFFFFF
-    */
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      background: linear-gradient(to bottom, #FFFBDC, #FFFFFF);
-      font-family: 'IM Fell English', serif;
-      color: #003D0D;
-      line-height: 1.6;
-    }
-
-    .reino {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 20px;
-    }
-
-    header {
-      text-align: center;
-      margin-bottom: 40px;
-      padding: 30px;
-      background: #FFFBDC;
-      border: 5px solid #01571E;
-      box-shadow: 0 0 20px rgba(0, 61, 13, 0.25);
-      border-radius: 10px;
-    }
-
-    h1 {
-      font-size: 2.5em;
-      color: #003D0D;
-      margin-bottom: 10px;
-      text-shadow: 1px 1px 2px rgba(0, 61, 13, 0.2);
-    }
-
-    .subtitulo {
-      font-size: 1.3em;
-      color: #01571E;
-      font-style: italic;
-    }
-
-    .nav-tabs {
-      display: flex;
-      gap: 10px;
-      margin: 30px 0;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    .nav-tabs button {
-      padding: 10px 18px;
-      background: #2EB600;
-      color: #FFFFFF;
-      border: 2px solid #003D0D;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 0.95em;
-      font-family: 'Cinzel', serif;
-      font-weight: bold;
-      transition: all 0.3s;
-    }
-
-    .nav-tabs button:hover,
-    .nav-tabs button.active {
-      background: #01571E;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 8px rgba(0, 61, 13, 0.3);
-    }
-
-    .nivel {
-      display: none;
-      background: #FFFBDC;
-      padding: 30px;
-      margin: 20px 0;
-      border: 8px solid #01571E;
-      box-shadow: 0 0 20px rgba(0, 61, 13, 0.25);
-      border-radius: 5px;
-      animation: fadeIn 0.4s ease-in;
-    }
-
-    .nivel.active {
-      display: block;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    h2 {
-      font-size: 1.8em;
-      color: #01571E;
-      margin: 10px 0 15px;
-      border-bottom: 2px solid #01571E;
-      padding-bottom: 8px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    h3 {
-      font-size: 1.3em;
-      color: #01571E;
-      margin: 20px 0 10px;
-    }
-
-    h4 {
-      font-size: 1.1em;
-      margin: 12px 0 6px;
-      color: #003D0D;
-    }
-
-    p {
-      margin-bottom: 10px;
-      font-size: 1em;
-    }
-
-    ul, ol {
-      margin-left: 25px;
-      margin-bottom: 15px;
-    }
-
-    li {
-      margin-bottom: 6px;
-    }
-
-    ul li::marker {
-      color: #2EB600;
-    }
-
-    ol li::marker {
-      color: #2EB600;
-      font-weight: bold;
-    }
-
-    .card {
-      background: #FFFFFF;
-      border-left: 4px solid #01571E;
-      padding: 15px;
-      margin: 12px 0;
-      border-radius: 3px;
-      box-shadow: 0 2px 5px rgba(0, 61, 13, 0.15);
-      font-size: 0.98em;
-    }
-
-    .conceito   { border-left-color: #2EB600; background: rgba(46, 182, 0, 0.06); }
-    .desafio    { border-left-color: #3FCC10; background: rgba(63, 204, 16, 0.07); }
-    .recompensa { border-left-color: #01571E; background: rgba(1, 87, 30, 0.06); }
-    .armadilha  { border-left-color: #003D0D; background: rgba(0, 61, 13, 0.06); }
-
-    pre {
-      background: #FFFBDC;
-      padding: 12px;
-      border-left: 4px solid #01571E;
-      margin: 12px 0;
-      overflow-x: auto;
-      border-radius: 3px;
-      font-family: "Courier New", monospace;
-      font-size: 0.9em;
-      color: #003D0D;
-    }
-
-    code {
-      background: #FFFBDC;
-      padding: 2px 4px;
-      border-radius: 3px;
-      font-family: "Courier New", monospace;
-      font-size: 0.9em;
-      color: #003D0D;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 15px 0;
-      font-size: 0.95em;
-    }
-
-    th, td {
-      border: 1px solid #01571E;
-      padding: 8px 10px;
-      text-align: left;
-    }
-
-    th {
-      background: #01571E;
-      color: #FFFBDC;
-    }
-
-    tr:nth-child(even) {
-      background: rgba(46, 182, 0, 0.06);
-    }
-
-    .progress-section {
-      margin: 20px 0;
-      text-align: center;
-    }
-
-    .progress-bar {
-      width: 100%;
-      height: 26px;
-      background: #FFFBDC;
-      border: 2px solid #01571E;
-      border-radius: 13px;
-      overflow: hidden;
-      margin: 8px 0;
-    }
-
-    .progress-fill {
-      height: 100%;
-      background: linear-gradient(to right, #2EB600, #3FCC10);
-      width: 0%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #FFFFFF;
-      font-weight: bold;
-      font-size: 0.9em;
-      transition: width 0.3s;
-    }
-
-    .xp-counter {
-      text-align: right;
-      font-size: 1em;
-      color: #01571E;
-      font-weight: bold;
-      margin-top: 5px;
-    }
-
-    footer {
-      text-align: center;
-      padding: 18px;
-      margin-top: 25px;
-      border-top: 2px solid #01571E;
-      color: #003D0D;
-      font-size: 0.9em;
-      background: #FFFBDC;
-    }
-
-    .emoji { font-size: 1.15em; }
-
-    @media (max-width: 768px) {
-      .nav-tabs { flex-direction: column; }
-      .nav-tabs button { width: 100%; }
-      h1 { font-size: 2em; }
-      h2 { font-size: 1.4em; }
-      .nivel { padding: 20px; }
-      pre { font-size: 0.8em; }
-    }
-
-    @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=IM+Fell+English&display=swap');
-  </style>
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body>
+<body class="tema-orcestra">
   <div class="reino">
     <header>
       <h1>🎨 CSS: A Magia Visual do Reino Web</h1>
@@ -280,16 +18,16 @@
     </header>
 
     <div class="nav-tabs">
-      <button class="nav-btn active" data-target="intro">Prólogo</button>
-      <button class="nav-btn" data-target="conceito">O que é CSS</button>
-      <button class="nav-btn" data-target="nivel1">Nível 1</button>
-      <button class="nav-btn" data-target="nivel2">Nível 2</button>
-      <button class="nav-btn" data-target="nivel3">Nível 3</button>
-      <button class="nav-btn" data-target="nivel4">Nível 4</button>
-      <button class="nav-btn" data-target="nivel5">Nível 5</button>
-      <button class="nav-btn" data-target="nivel6">Nível 6</button>
-      <button class="nav-btn" data-target="boss">Boss Final</button>
-      <button class="nav-btn" data-target="resumo">Resumo</button>
+      <button class="nav-btn active" data-target="intro" data-xp="0">Prólogo</button>
+      <button class="nav-btn" data-target="conceito" data-xp="20">O que é CSS</button>
+      <button class="nav-btn" data-target="nivel1" data-xp="50">Nível 1</button>
+      <button class="nav-btn" data-target="nivel2" data-xp="90">Nível 2</button>
+      <button class="nav-btn" data-target="nivel3" data-xp="130">Nível 3</button>
+      <button class="nav-btn" data-target="nivel4" data-xp="190">Nível 4</button>
+      <button class="nav-btn" data-target="nivel5" data-xp="260">Nível 5</button>
+      <button class="nav-btn" data-target="nivel6" data-xp="335">Nível 6</button>
+      <button class="nav-btn" data-target="boss" data-xp="365">Boss Final</button>
+      <button class="nav-btn" data-target="resumo" data-xp="365">Resumo</button>
     </div>
 
     <!-- INTRO -->
@@ -319,6 +57,7 @@
       </ul>
 
       <div class="progress-section">
+        <input type="hidden" id="xpMaximo" value="365">
         <h3>Seu Progresso na Magia CSS</h3>
         <div class="progress-bar">
           <div class="progress-fill" id="progressBar">0%</div>
@@ -737,7 +476,7 @@ h1, h2, h3 {
         <tr><td>5</td><td>Display & Flexbox</td><td>70</td></tr>
         <tr><td>6</td><td>Responsividade</td><td>75</td></tr>
         <tr><td>Boss</td><td>Portfólio do Herói (HTML + CSS)</td><td>120</td></tr>
-        <tr style="background:#01571E;color:#FFFBDC;">
+        <tr style="background:var(--cor-borda-container);color:var(--bg-container);">
           <td><strong>Total</strong></td><td></td><td><strong>365 XP</strong></td>
         </tr>
       </table>
@@ -759,46 +498,6 @@ h1, h2, h3 {
     <p>&copy; 2024 Capacitação de Desenvolvimento Web Medieval | CSS</p>
     <p><em>Livro 2 da aventura: A Magia do CSS (Portfólio integrado com HTML e JS)</em></p>
   </footer>
-
-  <script>
-    const navButtons = document.querySelectorAll('.nav-btn');
-    const niveles = document.querySelectorAll('.nivel');
-    const xpMap = {
-      intro: 0,
-      conceito: 20,
-      nivel1: 50,
-      nivel2: 90,
-      nivel3: 130,
-      nivel4: 190,
-      nivel5: 260,
-      nivel6: 335,
-      boss: 365,
-      resumo: 365
-    };
-
-    function updateProgress(xp) {
-      const total = 365;
-      const progressBar = document.getElementById('progressBar');
-      const xpCounter = document.getElementById('xpCounter');
-      const perc = Math.round((xp / total) * 100);
-      progressBar.style.width = perc + '%';
-      progressBar.textContent = perc + '%';
-      xpCounter.textContent = xp;
-    }
-
-    navButtons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const target = btn.getAttribute('data-target');
-        navButtons.forEach(b => b.classList.remove('active'));
-        niveles.forEach(n => n.classList.remove('active'));
-        btn.classList.add('active');
-        document.getElementById(target).classList.add('active');
-        updateProgress(xpMap[target] || 0);
-        window.scrollTo(0, 0);
-      });
-    });
-
-    updateProgress(0);
-  </script>
+  <script src="assets/js/script.js"></script>
 </body>
 </html>

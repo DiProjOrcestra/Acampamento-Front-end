@@ -4,291 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>HTML: O Primeiro Poder do Desenvolvimento Web</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      background: linear-gradient(to bottom, #f4e8c1, #d9c2a6);
-      font-family: 'IM Fell English', serif;
-      color: #4a3728;
-      line-height: 1.6;
-    }
-
-    .reino {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 20px;
-    }
-
-    header {
-      text-align: center;
-      margin-bottom: 40px;
-      padding: 30px;
-      background: url('https://www.transparenttextures.com/patterns/old-paper.png'), #f5e9d4;
-      border: 5px solid #8b5e3c;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-      border-radius: 10px;
-    }
-
-    h1 {
-      font-size: 2.5em;
-      color: #3c2f2f;
-      margin-bottom: 10px;
-      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-    }
-
-    .subtitulo {
-      font-size: 1.3em;
-      color: #5c4033;
-      font-style: italic;
-    }
-
-    .nav-tabs {
-      display: flex;
-      gap: 10px;
-      margin: 30px 0;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    .nav-tabs button {
-      padding: 12px 20px;
-      background: #8b5e3c;
-      color: #f5e9d4;
-      border: 2px solid #3c2f2f;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 1em;
-      font-family: 'Cinzel', serif;
-      font-weight: bold;
-      transition: all 0.3s;
-    }
-
-    .nav-tabs button:hover,
-    .nav-tabs button.active {
-      background: #3c2f2f;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    }
-
-    .nivel {
-      display: none;
-      background: url('https://www.transparenttextures.com/patterns/old-paper.png'), #f5e9d4;
-      padding: 40px;
-      margin: 20px 0;
-      border: 8px solid #8b5e3c;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-      border-radius: 5px;
-      animation: fadeIn 0.5s ease-in;
-    }
-
-    .nivel.active {
-      display: block;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    h2 {
-      font-size: 1.8em;
-      color: #5c4033;
-      margin: 30px 0 15px;
-      border-bottom: 2px solid #8b5e3c;
-      padding-bottom: 10px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    h3 {
-      font-size: 1.3em;
-      color: #5c4033;
-      margin: 20px 0 10px;
-      margin-left: 20px;
-    }
-
-    .card {
-      background: #f5e9d4;
-      border-left: 4px solid #8b5e3c;
-      padding: 20px;
-      margin: 15px 0;
-      border-radius: 3px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    }
-
-    .conceito {
-      border-left-color: #2196F3;
-      background: rgba(33, 150, 243, 0.05);
-    }
-
-    .desafio {
-      border-left-color: #FF9800;
-      background: rgba(255, 152, 0, 0.05);
-    }
-
-    .recompensa {
-      border-left-color: #4CAF50;
-      background: rgba(76, 175, 80, 0.05);
-    }
-
-    .armadilha {
-      border-left-color: #F44336;
-      background: rgba(244, 67, 54, 0.05);
-    }
-
-    .card strong {
-      color: #3c2f2f;
-      font-weight: bold;
-    }
-
-    pre {
-      background: #d9c2a6;
-      padding: 15px;
-      border-left: 4px solid #8b5e3c;
-      margin: 15px 0;
-      overflow-x: auto;
-      border-radius: 3px;
-      font-family: 'Courier New', monospace;
-      color: #3c2f2f;
-    }
-
-    code {
-      background: #d9c2a6;
-      padding: 2px 5px;
-      border-radius: 3px;
-      font-family: 'Courier New', monospace;
-      color: #3c2f2f;
-    }
-
-    ul, ol {
-      margin-left: 40px;
-      margin-bottom: 15px;
-    }
-
-    ul li::marker {
-      color: #8b5e3c;
-    }
-
-    ol li::marker {
-      color: #8b5e3c;
-      font-weight: bold;
-    }
-
-    li {
-      margin-bottom: 8px;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 15px 0;
-    }
-
-    th, td {
-      padding: 12px;
-      text-align: left;
-      border: 1px solid #8b5e3c;
-    }
-
-    th {
-      background: #8b5e3c;
-      color: #f5e9d4;
-      font-weight: bold;
-    }
-
-    tr:nth-child(even) {
-      background: rgba(139, 94, 60, 0.1);
-    }
-
-    .progress-section {
-      margin: 30px 0;
-      text-align: center;
-    }
-
-    .progress-bar {
-      width: 100%;
-      height: 30px;
-      background: #d9c2a6;
-      border: 2px solid #8b5e3c;
-      border-radius: 15px;
-      overflow: hidden;
-      margin: 10px 0;
-    }
-
-    .progress-fill {
-      height: 100%;
-      background: linear-gradient(to right, #8b5e3c, #5c4033);
-      width: 0%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #f5e9d4;
-      font-weight: bold;
-      transition: width 0.3s;
-    }
-
-    footer {
-      text-align: center;
-      padding: 20px;
-      margin-top: 40px;
-      border-top: 2px solid #8b5e3c;
-      color: #5c4033;
-    }
-
-    @media (max-width: 768px) {
-      .nav-tabs {
-        flex-direction: column;
-      }
-
-      .nav-tabs button {
-        width: 100%;
-      }
-
-      h1 {
-        font-size: 1.8em;
-      }
-
-      h2 {
-        font-size: 1.4em;
-      }
-
-      .nivel {
-        padding: 20px;
-      }
-
-      pre, code {
-        font-size: 0.85em;
-        overflow-x: auto;
-      }
-    }
-
-    .emoji {
-      font-size: 1.2em;
-      margin-right: 5px;
-    }
-
-    .xp-counter {
-      text-align: right;
-      font-size: 1.1em;
-      color: #8b5e3c;
-      font-weight: bold;
-      margin: 10px 0;
-    }
-
-    .highlight {
-      background: linear-gradient(120deg, rgba(255, 193, 7, 0.3), rgba(255, 193, 7, 0.1));
-      padding: 2px 5px;
-      border-radius: 3px;
-    }
-
-    @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=IM+Fell+English&display=swap');
-  </style>
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
   <div class="reino">
@@ -301,16 +17,16 @@
     </header>
 
     <div class="nav-tabs">
-      <button class="nav-btn active" data-target="intro">Introdução</button>
-      <button class="nav-btn" data-target="prerequisitos">Pré-Requisitos</button>
-      <button class="nav-btn" data-target="conceitos">Conceitos</button>
-      <button class="nav-btn" data-target="nivel1">Nível 1</button>
-      <button class="nav-btn" data-target="nivel2">Nível 2</button>
-      <button class="nav-btn" data-target="nivel3">Nível 3</button>
-      <button class="nav-btn" data-target="nivel4">Nível 4</button>
-      <button class="nav-btn" data-target="nivel5">Nível 5</button>
-      <button class="nav-btn" data-target="boss">Boss Final</button>
-      <button class="nav-btn" data-target="resumo">Resumo</button>
+      <button class="nav-btn active" data-target="intro" data-xp="0">Introdução</button>
+      <button class="nav-btn" data-target="prerequisitos" data-xp="10">Pré-Requisitos</button>
+      <button class="nav-btn" data-target="conceitos" data-xp="25">Conceitos</button>
+      <button class="nav-btn" data-target="nivel1" data-xp="50">Nível 1</button>
+      <button class="nav-btn" data-target="nivel2" data-xp="85">Nível 2</button>
+      <button class="nav-btn" data-target="nivel3" data-xp="130">Nível 3</button>
+      <button class="nav-btn" data-target="nivel4" data-xp="185">Nível 4</button>
+      <button class="nav-btn" data-target="nivel5" data-xp="250">Nível 5</button>
+      <button class="nav-btn" data-target="boss" data-xp="335">Boss Final</button>
+      <button class="nav-btn" data-target="resumo" data-xp="335">Resumo</button>
     </div>
 
     <!-- INTRODUÇÃO -->
@@ -332,11 +48,12 @@
       </ul>
 
       <div class="progress-section">
+        <input type="hidden" id="xpMaximo" value="335">
         <h3>Seu Progresso</h3>
         <div class="progress-bar">
-          <div class="progress-fill" id="progressBar" style="width: 5%">5%</div>
+          <div class="progress-fill" id="progressBar">0%</div>
         </div>
-        <div class="xp-counter">XP: <span id="xpCounter">10</span> / 445</div>
+        <div class="xp-counter">XP: <span id="xpCounter">0</span> / 335</div>
       </div>
 
       <p style="text-align: center; margin-top: 30px; font-size: 1.3em;">
@@ -846,7 +563,7 @@
           <td>Portfólio do Herói (HTML)</td>
           <td>100</td>
         </tr>
-        <tr style="background: #8b5e3c; color: #f5e9d4;">
+        <tr style="background: var(--cor-borda-container); color: var(--bg-container);">
           <td><strong>TOTAL</strong></td>
           <td></td>
           <td><strong>335 XP</strong></td>
@@ -869,43 +586,16 @@
         <li><strong>Livro 3 – JavaScript:</strong> dar vida ao portfólio com interatividade, XP e painel do herói.</li>
       </ol>
 
-      <p style="text-align: center; margin-top: 30px; font-size: 1.3em; color: #8b5e3c;">
+      <p style="text-align: center; margin-top: 30px; font-size: 1.3em; color: var(--cor-borda-container);">
         <strong>🎮 Que sua aventura continue! ⚔️✨</strong>
       </p>
     </div>
   </div>
 
-  <!-- Footer -->
   <footer>
-    <p>&copy; 2024 Capacitação de Desenvolvimento Web | Tema Medieval | <a href="#" style="color: #8b5e3c;">Voltar ao Topo</a></p>
+    <p>&copy; 2024 Capacitação de Desenvolvimento Web | Tema Medieval</p>
     <p><em>Documento Interativo - Versão 1.1 (Portfólio integrado com CSS e JS)</em></p>
   </footer>
-
-  <script>
-    const navButtons = document.querySelectorAll('.nav-btn');
-    const niveles = document.querySelectorAll('.nivel');
-
-    navButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        const target = button.getAttribute('data-target');
-        navButtons.forEach(btn => btn.classList.remove('active'));
-        niveles.forEach(nivel => nivel.classList.remove('active'));
-        button.classList.add('active');
-        document.getElementById(target).classList.add('active');
-        window.scrollTo(0, 0);
-      });
-    });
-
-    function updateProgress(xp) {
-      const progressBar = document.getElementById('progressBar');
-      const xpCounter = document.getElementById('xpCounter');
-      const percentage = Math.round((xp / 445) * 100);
-      progressBar.style.width = percentage + '%';
-      progressBar.textContent = percentage + '%';
-      xpCounter.textContent = xp;
-    }
-
-    updateProgress(10);
-  </script>
+  <script src="assets/js/script.js"></script>
 </body>
 </html>
