@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Git e GitHub: Controle de Versão</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="tema-orcestra">
+  <div class="reino">
+    <header>
+      <h1>🐙 Git & GitHub: Controle de Versão</h1>
+      <p class="subtitulo">Fundamentos de Versionamento e Colaboração em Equipe</p>
+      <p style="margin-top: 15px; font-size: 1.1em;">
+        Antes de escrever o código do seu portfólio, é fundamental entender como versionar, proteger e compartilhar o seu projeto com a equipe.
+      </p>
+    </header>
+
+    <div class="nav-tabs">
+      <button class="nav-btn active" data-target="intro" data-xp="0">Introdução</button>
+      <button class="nav-btn" data-target="config" data-xp="20">Configuração</button>
+      <button class="nav-btn" data-target="clonar" data-xp="50">Clonagem</button>
+      <button class="nav-btn" data-target="upar" data-xp="100">Sincronização (Push/Pull)</button>
+      <button class="nav-btn" data-target="uteis" data-xp="140">Comandos Úteis</button>
+      <button class="nav-btn" data-target="convcommits" data-xp="230">Conventional Commits</button>
+      <button class="nav-btn" data-target="branch" data-xp="180">Branches</button>
+      <button class="nav-btn" data-target="pr" data-xp="280">Pull Requests</button>
+      <button class="nav-btn" data-target="extensoes" data-xp="310">Extensões</button>
+      <button class="nav-btn" data-target="boss" data-xp="340">Desafio Final</button>
+      <button class="nav-btn" data-target="resumo" data-xp="380">Resumo</button>
+    </div>
+
+    <!-- INTRO -->
+    <div class="nivel active" id="intro">
+      <h2><span class="emoji">📖</span>O que é Git e GitHub?</h2>
+      
+      <div class="card conceito">
+        <h4>O que é Git? (O Motor Local)</h4>
+        <p>
+          O <strong>Git</strong> é um sistema de controle de versão instalado no seu computador. Ele é a ferramenta que rastreia cada alteração que você faz no código.
+        </p>
+        <ul>
+          <li><strong>Local:</strong> Funciona na sua máquina, mesmo sem internet.</li>
+          <li><strong>Máquina do tempo:</strong> Permite que você salve estados do seu projeto (snapshots) e volte para eles caso algo dê errado.</li>
+          <li><strong>Rastreabilidade:</strong> Ele sabe exatamente quem alterou cada linha de código e quando isso aconteceu.</li>
+        </ul>
+      </div>
+
+      <div class="card conceito">
+        <h4>O que é GitHub? (A Nuvem Colaborativa)</h4>
+        <p>
+          O <strong>GitHub</strong> é uma plataforma online que hospeda repositórios Git. Ele não é o Git, mas sim um serviço na nuvem que permite a interação entre vários desenvolvedores.
+        </p>
+        <ul>
+          <li><strong>Remoto:</strong> É onde o código "vive" para que o time inteiro possa acessá-lo.</li>
+          <li><strong>Colaboração:</strong> É aqui que as ferramentas como <strong>Pull Requests</strong> e <strong>Issues</strong> acontecem.</li>
+          <li><strong>Segurança:</strong> Funciona como um backup do seu trabalho, garantindo que ninguém perca o progresso se o computador de alguém quebrar.</li>
+        </ul>
+      </div>
+
+      <div class="card conceito">
+        <h4>A analogia definitiva</h4>
+        <p>
+          Pense no <strong>Git</strong> como o seu <strong>editor de texto</strong> ou o seu ambiente de desenvolvimento (a ferramenta que gera o conteúdo) e no <strong>GitHub</strong> como um <strong>Google Drive ou Dropbox</strong> especializado para programadores (o lugar onde você armazena e compartilha esse conteúdo com o mundo).
+        </p>
+      </div>
+    </div>
+
+    <!-- CONFIGURAÇÃO -->
+    <div class="nivel" id="config">
+      <h2><span class="emoji">⚙️</span>Configuração Inicial</h2>
+      <p>Antes de usar o Git, você precisa configurar sua identidade. Essa informação ficará registrada em todos os commits que você fizer.</p>
+
+      <div class="card conceito">
+        <h4>Configurando seu Usuário Globalmente</h4>
+        <p>Abra o terminal e execute os seguintes comandos, substituindo pelos seus dados reais:</p>
+        <pre><code>git config --global user.name "Seu Nome"
+git config --global user.email "seuemail@exemplo.com"</code></pre>
+        <p>
+        Esse passo é indispensável para que o Git vincule diretamente cada linha de código modificada à sua conta, garantindo que o seu histórico de contribuições apareça corretamente no seu perfil do GitHub.
+        </p>      
+      </div>
+
+      <div class="card desafio">
+        <h4>🎯 Como verificar se a configuração deu certo?</h4>
+        <p>Depois de rodar os comandos acima, execute os seguintes comandos no terminal para conferir se os dados foram salvos corretamente na sua máquina:</p>
+        <pre><code>git config user.name
+git config user.email</code></pre>
+        <p>Se o terminal retornar exatamente o seu nome e o seu e-mail embaixo de cada comando, a vinculação foi feita com sucesso e você já está pronto para realizar seus commits.</p>
+      </div>
+
+    </div>
+
+    <div class="nivel" id="clonar">
+      <h2><span class="emoji">📥</span>Clonagem de Repositório</h2>
+      <div class="card conceito">
+        <h4>O que é um Clone?</h4>
+        <p>
+          O comando <code>git clone</code> é o ponto de partida para colaborar em qualquer projeto existente. 
+          Ao contrário de um simples "download" de arquivos, o <code>clone</code> baixa o projeto completo, 
+          <strong>incluindo todo o seu histórico de versões e branches</strong>.
+        </p>
+        
+        <pre><code>git clone [URL-do-repositorio]</code></pre>
+
+        <p>
+          Ao executar esse comando, o Git:
+        </p>
+        <ul>
+          <li>Cria uma cópia exata do repositório remoto na sua máquina.</li>
+          <li>Configura automaticamente a conexão (chamada de <code>origin</code>) entre o seu repositório local e o GitHub.</li>
+          <li>Permite que você comece a trabalhar imediatamente, mantendo a capacidade de sincronizar suas futuras alterações com a equipe.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="nivel" id="upar">
+      <h2><span class="emoji">📤</span>Sincronização de Código</h2>
+      
+      <div class="card conceito">
+        <h4>Fluxo de Commits e Sincronização</h4>
+        <p>
+          Nesta etapa, vamos registrar o seu progresso no projeto. O objetivo é transformar as modificações locais em um histórico organizado e seguro no GitHub.
+        </p>
+        
+        <p>O fluxo de trabalho depende de como o projeto começou:</p>
+        
+        <pre><code># Cenário A: Se começou do zero na sua máquina
+git init                  # 0. Inicializa o repositório (apenas 1x)
+git add [arquivos]        # 1. Prepara as alterações
+git commit -m "mensagem"  # 2. Registra o snapshot local
+git push origin [branch]  # 3. Sincroniza com o GitHub
+
+# Cenário B: Se você usou git clone
+# O git init não é necessário, o repositório já está pronto!
+git pull origin [branch]  # 0. Atualiza o código com as mudanças da equipe
+git add [arquivos]        # 1. Prepara as alterações
+git commit -m "mensagem"  # 2. Registra o snapshot local
+git push origin [branch]  # 3. Sincroniza com o GitHub</code></pre>
+
+        <p><strong>Notas importantes:</strong></p>
+        <ul>
+          <li><strong>git init:</strong> Necessário apenas para transformar uma pasta nova em um projeto versionável. Se você clonou um projeto, a pasta <code>.git</code> já existe.</li>
+          <li><strong>git pull:</strong> Fundamental em projetos clonados. Ele traz as atualizações dos seus colegas para sua máquina, evitando conflitos antes de você enviar seu próprio trabalho.</li>
+          <li><strong>git add:</strong> Move as alterações para a <em>Staging Area</em> (o filtro antes do commit).</li>
+          <li><strong>git commit:</strong> Cria o "snapshot" (foto) do código.</li>
+          <li><strong>git push:</strong> Transfere seus commits locais para o servidor.</li>
+        </ul>
+      </div>
+
+      <div class="card conceito">
+        <h4>Entendendo o git add e o destino do push</h4>
+        <p>
+          Antes de registrar um commit, utilizamos a <strong>Staging Area</strong> para filtrar o que será enviado:
+        </p>
+        <ul>
+          <li><code>git add .</code> : Adiciona <strong>todas</strong> as modificações da pasta.</li>
+          <li><code>git add nome-do-arquivo.ext</code> : Adiciona apenas um arquivo específico.</li>
+        </ul>
+        <p>
+          Sobre o <strong>git push</strong>: nem sempre o destino será a <code>main</code>. 
+          Em um fluxo de trabalho profissional, você fará o push para a branch na qual está desenvolvendo sua funcionalidade (ex: <code>feature/login</code>).
+          <br><br>
+          O comando <code>git push origin [nome-da-sua-branch]</code> garante que suas alterações subam para a branch correta no GitHub, mantendo o ambiente de produção (main) protegido até que sua feature seja revisada e aprovada.
+        </p>
+        <p>
+          <em>Dica:</em> Utilize o <code>git status</code> para verificar o estado dos seus arquivos e <code>git branch</code> para confirmar em qual ramificação você está antes de enviar.
+        </p>
+      </div>
+      <div class="card armadilha">
+        <h4>⚠️ Boas Práticas para evitar conflitos</h4>
+        <ul>
+          <li><strong>Sempre rode <code>git pull</code> antes de começar:</strong> Se você não estiver com a versão mais recente da branch, o GitHub pode rejeitar o seu push, gerando conflitos que levam tempo para resolver.</li>
+          <li><strong>Commits curtos e atômicos:</strong> Não tente subir 5 funcionalidades de uma vez. Faça um commit por funcionalidade ou correção. Isso torna a revisão do código muito mais fácil para os seus colegas.</li>
+          <li><strong>Cuidado com o que sobe:</strong> Nunca suba arquivos de configuração locais (como senhas, chaves de API ou pastas de bibliotecas pesadas como <code>node_modules</code>).</li>
+        </ul>
+      </div>
+    </div>
+    
+
+    <div class="nivel" id="uteis">
+      <h2><span class="emoji">🛠️</span>Comandos de Manutenção</h2>
+
+      <div class="card conceito">
+        <h4>Monitoramento e Diagnóstico</h4>
+        <p>Comandos essenciais para saber o que está acontecendo no seu ambiente de trabalho.</p>
+        <ul>
+          <li><code>git status</code> : Exibe o estado atual (quais arquivos foram alterados, quais estão na Staging Area). <strong>Use sempre</strong> antes de qualquer commit.</li>
+          <li><code>git log --oneline</code> : Mostra o histórico recente de commits de forma compacta e fácil de ler.</li>
+          <li><code>git branch</code> : Lista as branches do repositório e mostra em qual você está trabalhando atualmente.</li>
+        </ul>
+      </div>
+
+      <div class="card conceito">
+        <h4>Gestão de Alterações Temporárias</h4>
+        <p>Ferramentas para organizar seu fluxo sem perder trabalho inacabado.</p>
+        <ul>
+          <li><code>git stash</code> : "Guarda" suas alterações atuais em um local temporário. Útil quando você precisa trocar de branch urgente para um hotfix, mas não quer commitar código incompleto.</li>
+          <li><code>git stash pop</code> : Traz de volta as alterações que estavam guardadas pelo stash.</li>
+        </ul>
+      </div>
+
+      <div class="card armadilha">
+        <h4>⚠️ Quando as coisas ficam estranhas...</h4>
+        <ul>
+          <li><code>git diff</code> : Mostra exatamente o que mudou linha a linha em cada arquivo antes de você fazer o <code>add</code>.</li>
+          <li><code>git checkout .</code> : <strong>CUIDADO!</strong> Descarta todas as alterações feitas em arquivos que ainda não foram commitados. Use apenas se você quiser apagar tudo e recomeçar da última versão salva.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- BRANCHES -->
+    <div class="nivel" id="branch">
+      <h2><span class="emoji">🔀</span>Gerenciamento de Ramificações</h2>
+
+      <div class="card conceito">
+        <h4>O que são Branches?</h4>
+        <p>
+          Branches (ramificações) são linhas de desenvolvimento isoladas. Elas permitem que você trabalhe em novas funcionalidades, correções de bugs ou experimentos sem afetar o código estável do projeto (geralmente na <code>main</code>).
+        </p>
+        <pre><code>git branch                    # Lista as branches locais
+git branch nome-da-branch     # Cria uma nova branch
+git checkout nome-da-branch   # Alterna para a branch desejada
+git checkout -b nome-da-branch # Atalho: Cria e já alterna para a branch</code></pre>
+      </div>
+
+      <div class="card conceito">
+        <h4>Fluxo de Trabalho Recomendado</h4>
+        <p>
+          Para manter um projeto organizado em equipe, adote estas boas práticas:
+        </p>
+        <ul>
+          <li><strong>Proteja a main:</strong> Nunca faça commits diretos na branch principal. Ela deve conter apenas código testado e estável.</li>
+          <li><strong>Nomenclatura Padrão:</strong> Utilize prefixos para identificar o tipo de tarefa:
+            <ul>
+              <li><code>feature/nome-da-funcionalidade</code></li>
+              <li><code>fix/correcao-de-bug</code></li>
+              <li><code>docs/documentacao</code></li>
+            </ul>
+          </li>
+          <li><strong>Ciclo de Vida:</strong> Assim que sua tarefa na branch estiver concluída e testada, o próximo passo é solicitar a integração (via Pull Request) para a branch principal.</li>
+        </ul>
+      </div>
+
+      <div class="card armadilha">
+        <h4>⚠️ Atenção ao Alternar (Checkout)</h4>
+        <p>
+          Antes de trocar de branch, garanta que seu ambiente está limpo ou suas mudanças estão guardadas:
+        </p>
+        <ul>
+          <li>O Git impedirá a troca se houver conflitos com arquivos que você modificou localmente.</li>
+          <li>Se precisar trocar de branch rapidamente sem finalizar a tarefa atual, use o <code>git stash</code> para guardar o progresso e o <code>git stash pop</code> para retomar depois.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- CONVENTIONAL COMMITS -->
+    <div class="nivel" id="convcommits">
+      <h2><span class="emoji">📝</span>Conventional Commits</h2>
+
+      <div class="card conceito">
+        <h4>Por que padronizar commits?</h4>
+        <p>
+          O <strong>Conventional Commits</strong> é um padrão que cria um histórico legível tanto para humanos quanto para máquinas. Com ele, você consegue gerar changelogs automáticos e identificar rapidamente o impacto de cada mudança no sistema.
+        </p>
+        <pre><code>&lt;tipo&gt;(&lt;escopo&gt;): &lt;descrição&gt;</code></pre>
+      </div>
+
+      <div class="card conceito">
+        <h4>Estrutura recomendada</h4>
+        <p>Utilize os tipos abaixo para categorizar suas alterações:</p>
+        <ul>
+          <li><code>feat:</code> Nova funcionalidade (feature).</li>
+          <li><code>fix:</code> Correção de um erro (bug).</li>
+          <li><code>docs:</code> Mudanças apenas na documentação.</li>
+          <li><code>refactor:</code> Alteração de código que não corrige bug nem adiciona funcionalidade.</li>
+          <li><code>test:</code> Adição ou correção de testes.</li>
+          <li><code>style:</code> Ajustes de formatação, espaços, etc. (sem alterar lógica).</li>
+        </ul>
+        <p><strong>Exemplos reais:</strong></p>
+        <code>feat(auth): adiciona validação de token JWT</code><br>
+        <code>fix(header): corrige alinhamento do menu mobile</code>
+      </div>
+
+      <div class="card armadilha">
+        <h4>⚠️ Erros comuns</h4>
+        <ul>
+          <li><strong>Mensagens vagas:</strong> "corrige coisas", "ajustes", "update" — isso não diz nada sobre o que foi alterado.</li>
+          <li><strong>Escopo gigante:</strong> Se o seu commit precisa de muitos tipos diferentes para ser explicado, talvez ele esteja grande demais. Considere quebrá-lo em commits menores (atômicos).</li>
+          <li><strong>Falta de imperativo:</strong> O padrão é usar o modo imperativo ("Adiciona" em vez de "Adicionado").</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- PULL REQUESTS -->
+    <div class="nivel" id="pr">
+      <h2><span class="emoji">🔀</span>Pull Requests (PRs)</h2>
+
+      <div class="card conceito">
+        <h4>O que é um Pull Request?</h4>
+        <p>
+          O Pull Request é o convite formal para que sua equipe revise e integre o código que você desenvolveu na sua branch para a branch principal (como a <code>main</code>).
+        </p>
+        <p>É o espaço onde:</p>
+        <ul>
+          <li>Você explica <strong>o que</strong> foi feito e <strong>por que</strong>.</li>
+          <li>Seus colegas podem comentar, sugerir melhorias ou encontrar bugs antes do código entrar no projeto.</li>
+          <li>A equipe garante que o novo código segue os padrões do projeto.</li>
+        </ul>
+      </div>
+
+      <div class="card conceito">
+        <h4>Como criar um PR profissional</h4>
+        <p>Um bom Pull Request acelera a revisão e evita retrabalho. Siga este padrão:</p>
+        <ul>
+          <li><strong>Título claro e direto:</strong> Ex: <code>feature: implementa sistema de autenticação</code>.</li>
+          <li><strong>Descrição detalhada:</strong> O que mudou? Como testar? Se houver prints, adicione-os.</li>
+          <li><strong>Linked Issues:</strong> Se o seu projeto usa *Issues*, mencione qual problema você está resolvendo (ex: <code>Closes #12</code>).</li>
+        </ul>
+      </div>
+
+      <div class="card armadilha">
+        <h4>⚠️ Regras de Ouro na Revisão</h4>
+        <ul>
+          <li><strong>Seja construtivo:</strong> Críticas devem ser sobre o código, nunca sobre a pessoa.</li>
+          <li><strong>O autor resolve:</strong> Se pedirem alterações (requested changes), é seu papel fazer as correções e dar um "push" novamente para atualizar o PR.</li>
+          <li><strong>Revisão é obrigatória:</strong> Nunca faça o <em>Merge</em> do seu próprio PR sem que pelo menos uma outra pessoa tenha aprovado.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- extensoes uteis -->
+    <div class="nivel" id="extensoes">
+      <h2><span class="emoji">🚀</span>Extensões Essenciais</h2>
+
+      <div class="card conceito">
+        <h4>Produtividade no Front-End</h4>
+        <p>
+          O VS Code se torna uma ferramenta de alta performance quando você utiliza as extensões certas para o seu fluxo.
+        </p>
+        <ul>
+          <li><strong>GitLens:</strong> Fundamental para visualizar o histórico de alterações diretamente na linha do código.</li>
+          <li><strong>Prettier:</strong> Formata seu HTML, CSS e JavaScript/TypeScript automaticamente ao salvar. Essencial para manter o código limpo.</li>
+          <li><strong>ESLint:</strong> Identifica erros de sintaxe e más práticas no seu código em tempo real.</li>
+          <li><strong>Live Share:</strong> Permite programar em dupla (pair programming) em tempo real com colegas da equipe.</li>
+        </ul>
+      </div>
+
+      <div class="card conceito">
+        <h4>Visual e UI</h4>
+        <ul>
+          <li><strong>Auto Close Tag:</strong> Fecha automaticamente as tags HTML/JSX. Economiza muito tempo na criação de componentes.</li>
+          <li><strong>Auto Rename Tag:</strong> Se você alterar o nome de uma tag de abertura, ele altera a de fechamento automaticamente.</li>
+          <li><strong>Tailwind CSS IntelliSense:</strong> Se estiver usando Tailwind, esta extensão é obrigatória. Ela fornece autocompletar e pré-visualização das classes CSS.</li>
+          <li><strong>Error Lens:</strong> Mostra as mensagens de erro diretamente na linha do código, facilitando a correção rápida.</li>
+        </ul>
+      </div>
+
+      <div class="card armadilha">
+        <h4>⚠️ Dica de Ouro: Workspace</h4>
+        <p>
+          Evite instalar extensões desnecessárias, pois elas consomem muita memória RAM do seu PC.
+        </p>
+        <ul>
+          <li>Use o arquivo <code>.vscode/extensions.json</code> para recomendar as extensões oficiais do projeto.</li>
+          <li>Isso garante que todos na equipe tenham a mesma formatação e as mesmas ferramentas, evitando conflitos de estilo no código.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- BOSS FINAL -->
+    <div class="nivel" id="boss">
+      <h2><span class="emoji">🎯</span>Desafio Final: O Repositório Base</h2>
+
+      <div class="card desafio">
+        <h4>Missão Prática: Ciclo de Vida</h4>
+        <ol>
+          <li><strong>Identidade:</strong> Configure seu <code>user.name</code> e <code>user.email</code>.</li>
+          <li><strong>Inicialização:</strong> Crie um repositório no GitHub, clone-o na sua máquina e entre na pasta.</li>
+          <li><strong>Branching:</strong> Crie e troque para uma branch chamada <code>feat/estrutura-inicial</code>.</li>
+          <li><strong>Trabalho:</strong> Mova os arquivos da capacitação para a pasta do repositório.</li>
+          <li><strong>Ciclo:</strong> Adicione os arquivos (<code>add</code>), crie o commit padrão (<code>feat: adiciona arquivos da capacitação</code>) e envie para o GitHub (<code>push</code>).</li>
+          <li><strong>Integração:</strong> Abra um <em>Pull Request</em> no GitHub mesclando sua branch na <code>main</code>.</li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- RESUMO -->
+    <div class="nivel" id="resumo">
+      <h2><span class="emoji">📚</span>Resumo da Capacitação</h2>
+
+      <table>
+        <tr>
+          <th>Nível</th>
+          <th>Tema</th>
+          <th>XP</th>
+        </tr>
+        <tr><td>Introdução</td><td>Git vs GitHub</td><td>20</td></tr>
+        <tr><td>Configuração</td><td>Identidade Global</td><td>30</td></tr>
+        <tr><td>Clonagem</td><td>Repositório Remoto</td><td>20</td></tr>
+        <tr><td>Sincronização</td><td>Push, Pull e Commits</td><td>60</td></tr>
+        <tr><td>Comandos Úteis</td><td>Diagnóstico e Stash</td><td>40</td></tr>
+        <tr><td>Branches</td><td>Gerenciamento de Ramificações</td><td>40</td></tr>
+        <tr><td>Conv. Commits</td><td>Padronização de Mensagens</td><td>30</td></tr>
+        <tr><td>Pull Requests</td><td>Code Review e Colaboração</td><td>40</td></tr>
+        <tr><td>Extensões</td><td>Produtividade no VS Code</td><td>20</td></tr>
+        <tr><td>Desafio</td><td>Repositório Base</td><td>50</td></tr>
+        <tr style="background:var(--cor-borda-container);color:var(--bg-container);">
+          <td><strong>Total</strong></td><td></td><td><strong>350 XP</strong></td>
+        </tr>
+      </table>
+
+      <h3>📖 Próximo Passo</h3>
+      <p>Com o seu repositório configurado e o ambiente de versionamento dominado, você está pronto para seguir para o <strong>Livro 1 - HTML</strong>.</p>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>&copy; 2026 Capacitação de Desenvolvimento Web | Versionamento</p>
+    <p><em>Módulo 0: Controle de Versão e Colaboração</em></p>
+    <p><a href="index.html">Voltar para o Início</a></p>
+  </footer>
+  
+  <script src="assets/js/script.js"></script>
+</body>
+</html>
